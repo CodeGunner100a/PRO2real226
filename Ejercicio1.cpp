@@ -24,7 +24,7 @@ void Eliminar(String &x, String z, byte p, byte &pos) {
 	String x = Edit1->Text;
 	String z = Edit2->Text;
 
-	byte pos = 0;
+	byte pos = 0; 
 
 	Eliminar(x, z, 1, pos);
 
