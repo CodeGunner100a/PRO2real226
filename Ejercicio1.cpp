@@ -1,20 +1,18 @@
 // Copiar el ejercicio 1 debajo del comentario "{ EJERCICIO 1 COPIAR ABAJO }"
 
-void Eliminar(String &x, String z, byte p) {
+void Eliminar(String &x, String z, byte p, byte &pos) {
 	if (p <= x.Length()) // caso general
 	{
-		if (x.SubString(p, z.Length()) == z && (p == 1 || x[p - 1] == ' ') &&
-			(p + z.Length() > x.Length() || x[p + z.Length()] == ' ')) {
-
-			if (p == 1) {
-				x.Delete(p, z.Length() + 1);
-			}
-			else {
-				x.Delete(p - 1, z.Length() + 1);
-			}
+		if (x[p] == z[1]) {
+			pos = p;
 		}
-		else {
-			Eliminar(x, z, p + 1);
+
+		Eliminar(x, z, p + 1, pos);
+	}
+	else // caso base
+	{
+		if (pos > 0) {
+			x.Delete(pos, 1);
 		}
 	}
 }
@@ -26,7 +24,9 @@ void Eliminar(String &x, String z, byte p) {
 	String x = Edit1->Text;
 	String z = Edit2->Text;
 
-	Eliminar(x, z, 1);
+	byte pos = 0;
+
+	Eliminar(x, z, 1, pos);
 
 	Edit3->Text = x;
 
