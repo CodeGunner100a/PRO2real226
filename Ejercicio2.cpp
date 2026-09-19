@@ -38,7 +38,6 @@ void CargarVocal(TStringGrid *v, String x, byte a, byte b) {
 	}
 }
 
-
 //==========================================================================================
 // Copiar la llamada del ejercicio 2 debajo del comentario "{ LLAMADA DEL EJERCICIO 2 COPIAR ABAJO}"
 	String x = Edit1->Text;
