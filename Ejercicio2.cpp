@@ -1,52 +1,30 @@
 // Copiar el ejercicio 2 debajo del comentario "{ EJERCICIO 2 COPIAR ABAJO }"
 
-byte ContVocal(String x) {
-	byte c;
+// EJERCICIO 2
+//2) Proceso para rotar una posición a derecha.
+//
+//V = [3, 7, 6, 5, 4, 3]   n = 5
+//=> V = [3, 7, 6, 5, 4]
 
-	if (x == "") // caso base
+
+
+void RotarDer(TStringGrid *v, byte p, String ult) {
+	if (p > 1) // caso general
 	{
-		c = 0;
+		v->Cells[p - 1][0] = v->Cells[p - 2][0];
+
+		RotarDer(v, p - 1, ult);
 	}
-	else // caso general
+	else // caso base
 	{
-		wchar_t z = x[1];
-		x.Delete(1, 1);
-
-		c = ContVocal(x);
-
-		if (z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u') {
-			c++;
-		}
-	}
-
-	return c;
-}
-
-void CargarVocal(TStringGrid *v, String x, byte a, byte b) {
-	byte n = b - a + 1;
-
-	if (n > 0) {
-		if (x[1] == 'a' || x[1] == 'e' || x[1] == 'i' || x[1] == 'o' ||
-			x[1] == 'u') {
-
-			v->Cells[a][0] = x[1];
-			a++;
-		}
-
-		x.Delete(1, 1);
-		CargarVocal(v, x, a, b);
+		v->Cells[0][0] = ult;
 	}
 }
 
 //==========================================================================================
 // Copiar la llamada del ejercicio 2 debajo del comentario "{ LLAMADA DEL EJERCICIO 2 COPIAR ABAJO}"
-String x = Edit1->Text;
+	byte n = StringGrid1->ColCount;
 
-	byte n = ContVocal(x);
+	String ult = StringGrid1->Cells[n - 1][0];
 
-	CargarVocal(StringGrid1, x, 0, n - 1);
-
-	StringGrid1->ColCount = n;
-	StringGrid1->RowCount = 1;
-
-	Edit3->Text = n;
+	RotarDer(StringGrid1, n, ult);
