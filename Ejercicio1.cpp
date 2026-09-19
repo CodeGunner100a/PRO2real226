@@ -30,4 +30,3 @@ void Eliminar(String &x, String z, byte p, byte &pos) {
 
 	Edit3->Text = x;
 
-
